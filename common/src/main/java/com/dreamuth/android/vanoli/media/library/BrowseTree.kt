@@ -100,12 +100,12 @@ class BrowseTree(context: Context, musicSource: MusicSource) {
             albumChildren += mediaItem
 
             // Add the first track of each album to the 'Recommended' category
-            if (mediaItem.trackNumber == 1L){
+//            if (mediaItem.trackNumber == 1L){
                 val recommendedChildren = mediaIdToChildren[UAMP_RECOMMENDED_ROOT]
                                         ?: mutableListOf()
                 recommendedChildren += mediaItem
                 mediaIdToChildren[UAMP_RECOMMENDED_ROOT] = recommendedChildren
-            }
+//            }
         }
     }
 

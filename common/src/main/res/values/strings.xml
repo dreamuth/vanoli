@@ -38,6 +38,6 @@
     </string>
 
     <!-- Browse Tree -->
-    <string name="recommended_title">Recommended</string>
-    <string name="albums_title">Albums</string>
+    <string name="recommended_title">All</string>
+    <string name="albums_title">Groups</string>
 </resources>
