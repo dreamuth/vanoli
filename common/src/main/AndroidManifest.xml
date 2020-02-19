@@ -16,7 +16,7 @@
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.uamp.media">
+    package="com.dreamuth.android.vanoli.media">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -39,7 +39,7 @@
 
         <provider
             android:name=".library.AlbumArtContentProvider"
-            android:authorities="com.example.android.uamp.media.library.provider"
+            android:authorities="com.dreamuth.android.vanoli.media.library.provider"
             android:exported="true"/>
 
     </application>

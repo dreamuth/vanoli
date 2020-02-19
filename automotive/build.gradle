@@ -23,7 +23,7 @@ android {
     compileSdkVersion 28
 
     defaultConfig {
-        applicationId "com.example.android.uamp.next"
+        applicationId "com.dreamuth.android.vanoli.next"
 
         minSdkVersion 24
         targetSdkVersion 28
