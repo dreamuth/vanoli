@@ -17,6 +17,7 @@
 package com.dreamuth.android.vanoli.viewmodels
 
 import android.support.v4.media.MediaBrowserCompat
+import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
@@ -115,6 +116,7 @@ class MainActivityViewModel(
     fun playMedia(mediaItem: MediaItemData, pauseAllowed: Boolean = true) {
         val nowPlaying = musicServiceConnection.nowPlaying.value
         val transportControls = musicServiceConnection.transportControls
+        musicServiceConnection.transportControls.setRepeatMode(PlaybackStateCompat.REPEAT_MODE_ALL)
 
         val isPrepared = musicServiceConnection.playbackState.value?.isPrepared ?: false
         if (isPrepared && mediaItem.mediaId == nowPlaying?.id) {

@@ -17,11 +17,9 @@
 package com.dreamuth.android.vanoli.media.library
 
 import android.content.Context
-import android.support.v4.media.MediaBrowserCompat
 import android.support.v4.media.MediaBrowserCompat.MediaItem
 import android.support.v4.media.MediaMetadataCompat
 import com.dreamuth.android.vanoli.media.MusicService
-import com.dreamuth.android.vanoli.media.R
 import com.dreamuth.android.vanoli.media.extensions.album
 import com.dreamuth.android.vanoli.media.extensions.albumArt
 import com.dreamuth.android.vanoli.media.extensions.albumArtUri
@@ -29,7 +27,6 @@ import com.dreamuth.android.vanoli.media.extensions.artist
 import com.dreamuth.android.vanoli.media.extensions.flag
 import com.dreamuth.android.vanoli.media.extensions.id
 import com.dreamuth.android.vanoli.media.extensions.title
-import com.dreamuth.android.vanoli.media.extensions.trackNumber
 import com.dreamuth.android.vanoli.media.extensions.urlEncoded
 
 /**
@@ -72,41 +69,9 @@ class BrowseTree(context: Context, musicSource: MusicSource) {
      * TODO: Expand to allow more browsing types.
      */
     init {
-        val rootList = mediaIdToChildren[UAMP_BROWSABLE_ROOT] ?: mutableListOf()
-
-        val recommendedMetadata = MediaMetadataCompat.Builder().apply {
-            id = UAMP_RECOMMENDED_ROOT
-            title = context.getString(R.string.recommended_title)
-            albumArtUri = RESOURCE_ROOT_URI +
-                    context.resources.getResourceEntryName(R.drawable.ic_recommended)
-            flag = MediaBrowserCompat.MediaItem.FLAG_BROWSABLE
-        }.build()
-
-        val albumsMetadata = MediaMetadataCompat.Builder().apply {
-            id = UAMP_ALBUMS_ROOT
-            title = context.getString(R.string.albums_title)
-            albumArtUri = RESOURCE_ROOT_URI +
-              context.resources.getResourceEntryName(R.drawable.ic_album)
-            flag = MediaBrowserCompat.MediaItem.FLAG_BROWSABLE
-        }.build()
-
-        rootList += recommendedMetadata
-        rootList += albumsMetadata
-        mediaIdToChildren[UAMP_BROWSABLE_ROOT] = rootList
-
-        musicSource.forEach { mediaItem ->
-            val albumMediaId = mediaItem.album.urlEncoded
-            val albumChildren = mediaIdToChildren[albumMediaId] ?: buildAlbumRoot(mediaItem)
-            albumChildren += mediaItem
-
-            // Add the first track of each album to the 'Recommended' category
-//            if (mediaItem.trackNumber == 1L){
-                val recommendedChildren = mediaIdToChildren[UAMP_RECOMMENDED_ROOT]
-                                        ?: mutableListOf()
-                recommendedChildren += mediaItem
-                mediaIdToChildren[UAMP_RECOMMENDED_ROOT] = recommendedChildren
-//            }
-        }
+        val allRadios = mediaIdToChildren[UAMP_BROWSABLE_ROOT] ?: mutableListOf()
+        musicSource.forEach { mediaItem -> allRadios += mediaItem }
+        mediaIdToChildren[UAMP_BROWSABLE_ROOT] = allRadios
     }
 
     /**
