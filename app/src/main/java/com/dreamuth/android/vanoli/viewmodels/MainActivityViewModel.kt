@@ -159,6 +159,22 @@ class MainActivityViewModel(
         }
     }
 
+    fun playPreviousMediaId() {
+        musicServiceConnection.transportControls.skipToPrevious()
+        musicServiceConnection.playbackState.value?.let { playbackState ->
+            if (playbackState.isPlayEnabled)
+                musicServiceConnection.transportControls.play()
+        }
+    }
+
+    fun playNextMediaId() {
+        musicServiceConnection.transportControls.skipToNext()
+        musicServiceConnection.playbackState.value?.let { playbackState ->
+            if (playbackState.isPlayEnabled)
+                musicServiceConnection.transportControls.play()
+        }
+    }
+
     class Factory(
         private val musicServiceConnection: MusicServiceConnection
     ) : ViewModelProvider.NewInstanceFactory() {

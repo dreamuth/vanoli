@@ -77,6 +77,10 @@ class NowPlayingFragment : Fragment() {
         // Setup UI handlers for buttons
         view.findViewById<ImageButton>(R.id.media_button).setOnClickListener {
             nowPlayingViewModel.mediaMetadata.value?.let { mainActivityViewModel.playMediaId(it.id) } }
+        view.findViewById<ImageButton>(R.id.previous_button).setOnClickListener {
+            nowPlayingViewModel.mediaMetadata.value?.let { mainActivityViewModel.playPreviousMediaId() } }
+        view.findViewById<ImageButton>(R.id.next_button).setOnClickListener {
+            nowPlayingViewModel.mediaMetadata.value?.let { mainActivityViewModel.playNextMediaId() } }
 
         // Initialize playback duration and position to zero
         view.findViewById<TextView>(R.id.duration).text =
@@ -88,7 +92,7 @@ class NowPlayingFragment : Fragment() {
     /**
      * Internal function used to update all UI elements except for the current item playback
      */
-    private fun updateUI(view: View, metadata: NowPlayingFragmentViewModel.NowPlayingMetadata) {
+    private fun updateUI(view: View, metadata: NowPlayingMetadata) {
         val albumArtView = view.findViewById<ImageView>(R.id.albumArt)
         if (metadata.albumArtUri == Uri.EMPTY) {
             albumArtView.setImageResource(R.drawable.ic_album_black_24dp)
