@@ -23,7 +23,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dreamuth.android.vanoli.R
 import com.dreamuth.android.vanoli.MediaItemAdapter
@@ -92,7 +92,7 @@ class MediaItemFragment : Fragment() {
 
         // Set the adapter
         if (list is RecyclerView) {
-            list.layoutManager = LinearLayoutManager(list.context)
+            list.layoutManager = GridLayoutManager(list.context, 3)
             list.adapter = listAdapter
         }
     }

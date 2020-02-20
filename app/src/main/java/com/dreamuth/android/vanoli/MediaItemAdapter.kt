@@ -22,13 +22,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.dreamuth.android.vanoli.MediaItemData.Companion.PLAYBACK_RES_CHANGED
 import kotlinx.android.synthetic.main.fragment_mediaitem.view.albumArt
 import kotlinx.android.synthetic.main.fragment_mediaitem.view.item_state
-import kotlinx.android.synthetic.main.fragment_mediaitem.view.subtitle
-import kotlinx.android.synthetic.main.fragment_mediaitem.view.title
 
 /**
  * [RecyclerView.Adapter] of [MediaItemData]s used by the [MediaItemFragment].
@@ -66,8 +63,6 @@ class MediaItemAdapter(private val itemClickedListener: (MediaItemData) -> Unit
         // there isn't a stale item.
         if (fullRefresh) {
             holder.item = mediaItem
-            holder.titleView.text = mediaItem.title
-            holder.subtitleView.text = mediaItem.subtitle
             holder.playbackState.setImageResource(mediaItem.playbackRes)
 
             Glide.with(holder.albumArt)
@@ -85,8 +80,6 @@ class MediaViewHolder(view: View,
                       itemClickedListener: (MediaItemData) -> Unit
 ) : RecyclerView.ViewHolder(view) {
 
-    val titleView: TextView = view.title
-    val subtitleView: TextView = view.subtitle
     val albumArt: ImageView = view.albumArt
     val playbackState: ImageView = view.item_state
 
