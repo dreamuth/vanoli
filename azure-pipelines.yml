@@ -26,6 +26,7 @@ steps:
     apksignerKeystorePassword: '$(jarsignerKeystorePassword)'
     apksignerKeystoreAlias: 'android-key'
     apksignerKeyPassword: '$(jarsignerKeyPassword)'
+    zipalign: false
 
 - task: CopyFiles@2
   inputs:
