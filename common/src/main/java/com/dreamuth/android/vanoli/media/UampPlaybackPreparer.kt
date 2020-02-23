@@ -33,6 +33,7 @@ import com.google.android.exoplayer2.ControlDispatcher
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
+import com.google.android.exoplayer2.source.LoopingMediaSource
 import com.google.android.exoplayer2.upstream.DataSource
 
 /**
@@ -86,7 +87,7 @@ class UampPlaybackPreparer(
                 // user actually wants to hear plays first.
                 val initialWindowIndex = metadataList.indexOf(itemToPlay)
 
-                exoPlayer.prepare(mediaSource)
+                exoPlayer.prepare(LoopingMediaSource(mediaSource))
                 exoPlayer.seekTo(initialWindowIndex, 0)
             }
         }
